@@ -3,16 +3,16 @@
 </template>
 
 <script>
-    export default {
-        name: "_id.vue",
-        data () {
-          return { id: this.validate() }
-        },
-        validate({params}) {
-          // Должен быть числом
-          return /^\d+$/.test(params.id)
-        }
+  export default {
+    name: "order_id",
+    validate({params}) {
+      return /^\d+$/.test(params.id)
+    },
+    data() {
+      return {id: this.$router.currentRoute.params.id}
     }
+
+  }
 </script>
 
 <style scoped>
