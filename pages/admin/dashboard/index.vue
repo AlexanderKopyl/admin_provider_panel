@@ -1,22 +1,21 @@
-<div id="app">
+<template>
   <v-app id="inspire">
     <v-navigation-drawer
       v-model="drawer"
       app
-      right
     >
       <v-list dense>
-        <v-list-item @click="">
+        <v-list-item link>
           <v-list-item-action>
-            <v-icon>home</v-icon>
+            <v-icon>mdi-home</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item @click="">
+        <v-list-item link>
           <v-list-item-action>
-            <v-icon>contact_mail</v-icon>
+            <v-icon>mdi-contact-mail</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Contact</v-list-item-title>
@@ -27,24 +26,23 @@
 
     <v-app-bar
       app
-      color="cyan"
+      color="indigo"
       dark
     >
-      <v-spacer></v-spacer>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>Application</v-toolbar-title>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
 
     <v-content>
       <v-container
+        class="fill-height"
         fluid
-        fill-height
       >
-        <v-layout
-          justify-center
-          align-center
+        <v-row
+          align="center"
+          justify="center"
         >
-          <v-flex text-xs-center>
+          <v-col class="text-center">
             <v-tooltip left>
               <template v-slot:activator="{ on }">
                 <v-btn
@@ -65,7 +63,7 @@
                 <v-btn
                   icon
                   large
-                  href="https://codepen.io/johnjleider/pen/WVbPgz"
+                  href="https://codepen.io/johnjleider/pen/zgxeLQ"
                   target="_blank"
                   v-on="on"
                 >
@@ -74,17 +72,26 @@
               </template>
               <span>Codepen</span>
             </v-tooltip>
-          </v-flex>
-        </v-layout>
+          </v-col>
+        </v-row>
       </v-container>
     </v-content>
-
     <v-footer
-      color="cyan"
+      color="indigo"
       app
     >
-      <v-spacer></v-spacer>
       <span class="white--text">&copy; 2019</span>
     </v-footer>
   </v-app>
-</div>
+</template>
+
+<script>
+  export default {
+    props: {
+      source: String,
+    },
+    data: () => ({
+      drawer: null,
+    }),
+  }
+</script>
