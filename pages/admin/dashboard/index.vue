@@ -85,26 +85,6 @@
   </v-app>
 </template>
 <script>
-  const Cookie = process.client ? require('js-cookie') : undefined
-
-  export default {
-    name:'index',
-    middleware: 'notAuthenticated',
-    methods: {
-      postLogin () {
-        setTimeout(() => { // we simulate the async request with timeout.
-          const auth = {
-            accessToken: 'someStringGotFromApiServiceWithAjax'
-          }
-          this.$store.commit('setAuth', auth) // mutating to store for client rendering
-          Cookie.set('auth', auth) // saving token in cookie for server rendering
-          this.$router.push('/admin/dashboard')
-        }, 1000)
-      }
-    }
-  }
-</script>
-<script>
   export default {
     props: {
       source: String,
