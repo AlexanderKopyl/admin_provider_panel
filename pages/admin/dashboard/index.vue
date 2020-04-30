@@ -1,42 +1,90 @@
-<template>
-  <div>
-    <div v-if="$store.state.auth">
-      <p>
-        You are authenticated. You can see the
-        <NuxtLink to="/admin/order">
-          order page
-        </NuxtLink>!
-        <NuxtLink to="/admin/profile">
-          profile page
-        </NuxtLink>!
-      </p>
-      <button @click="logout">
-        Logout
-      </button>
-    </div>
-    <p v-else>
-      Please
-      <NuxtLink to="/login">
-        login
-      </NuxtLink>.
-    </p>
-  </div>
-</template>
+<div id="app">
+  <v-app id="inspire">
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+      right
+    >
+      <v-list dense>
+        <v-list-item @click="">
+          <v-list-item-action>
+            <v-icon>home</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item @click="">
+          <v-list-item-action>
+            <v-icon>contact_mail</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Contact</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
 
-<script>
-    const Cookie = process.client ? require('js-cookie') : undefined
+    <v-app-bar
+      app
+      color="cyan"
+      dark
+    >
+      <v-spacer></v-spacer>
+      <v-toolbar-title>Application</v-toolbar-title>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    </v-app-bar>
 
-    export default {
-      name: "index",
-      methods: {
-        logout () {
-          Cookie.remove('auth')
-          this.$store.commit('setAuth', null)
-        }
-      }
-    }
-</script>
+    <v-content>
+      <v-container
+        fluid
+        fill-height
+      >
+        <v-layout
+          justify-center
+          align-center
+        >
+          <v-flex text-xs-center>
+            <v-tooltip left>
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  :href="source"
+                  icon
+                  large
+                  target="_blank"
+                  v-on="on"
+                >
+                  <v-icon large>mdi-code-tags</v-icon>
+                </v-btn>
+              </template>
+              <span>Source</span>
+            </v-tooltip>
 
-<style scoped>
+            <v-tooltip right>
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  icon
+                  large
+                  href="https://codepen.io/johnjleider/pen/WVbPgz"
+                  target="_blank"
+                  v-on="on"
+                >
+                  <v-icon large>mdi-codepen</v-icon>
+                </v-btn>
+              </template>
+              <span>Codepen</span>
+            </v-tooltip>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
 
-</style>
+    <v-footer
+      color="cyan"
+      app
+    >
+      <v-spacer></v-spacer>
+      <span class="white--text">&copy; 2019</span>
+    </v-footer>
+  </v-app>
+</div>
