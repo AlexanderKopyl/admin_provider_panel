@@ -29,7 +29,7 @@ module.exports = {
   ],
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth-next'
   ],
   axios: {
     baseURL: "http://localhost:3001/"
@@ -39,18 +39,26 @@ module.exports = {
   },
   auth: {
     strategies: {
-
       local: {
         scheme: 'refresh',
         token: {
-          property: 'access.token'
+          property: 'access_token',
+          maxAge: 1800,
+          type: 'Bearer'
         },
         refreshToken: {
-          property: 'refresh.token'
+          property: 'refresh_token',
+          data: 'token',
+          maxAge: 604800
+        },
+        user: {
+          property: 'user',
+          autoFetch: true
         },
         endpoints: {
           login: { url: 'api/customer/login', method: 'post'},
-          user: { url: 'api/users/me', method: 'get', propertyName: false },
+          refresh: { url: 'api/customer/token', method: 'post' },
+          user: { url: 'api/users/me', method: 'get'},
         },
         // tokenRequired: true,
         // tokenType: 'Bearer',
