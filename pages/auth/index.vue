@@ -52,6 +52,7 @@
 
   export default {
     name: 'index',
+    auth: false,
     components: {
       Notification,
     },
@@ -63,7 +64,7 @@
         error: null
       }
     },
-    middleware: ['auth'],
+    middleware: 'auth',
     methods: {
       async login() {
         try {

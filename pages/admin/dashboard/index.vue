@@ -126,7 +126,6 @@
     props: {
       source: String,
     },
-    middleware: ['auth'],
     data: () => ({
       drawer: null
     }),

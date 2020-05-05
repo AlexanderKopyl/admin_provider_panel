@@ -35,20 +35,40 @@ module.exports = {
     baseURL: "http://localhost:3001/"
   },
   router: {
-    middleware: ['authenticated']
+    middleware: ['auth']
   },
   auth: {
     strategies: {
+
       local: {
+        scheme: 'refresh',
+        token: {
+          property: 'access.token'
+        },
+        refreshToken: {
+          property: 'refresh.token'
+        },
         endpoints: {
-          login: { url: 'api/customer/login', method: 'post', propertyName: 'access.token'}
+          login: { url: 'api/customer/login', method: 'post'},
+          user: { url: 'api/users/me', method: 'get', propertyName: false },
         },
         // tokenRequired: true,
-        tokenType: 'bearer',
-        autoFetchUser: false
-      }
-    }
+        // tokenType: 'Bearer',
+        // autoFetchUser: false
+      },
+
+    },
+    autoRefresh: {
+      enable: true
+    },
+    redirect: {
+      login: '/auth',
+      logout: '/',
+      callback: '/admin/dashboard',
+      home: '/admin/dashboard',
+    },
   },
+
     /*
     ** Build configuration
     */
