@@ -2,12 +2,12 @@ const cookieparser = process.server ? require('cookieparser') : undefined
 
 export const state = () => {
   return {
-    auth: null
+    authUser: null
   }
 }
 export const mutations = {
   setAuth (state, auth) {
-    state.auth = auth
+    state.authUser = auth
   }
 }
 export const actions = {

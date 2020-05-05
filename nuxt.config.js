@@ -27,6 +27,28 @@ module.exports = {
     // With options
     ['@nuxtjs/vuetify', { /* module options */ }]
   ],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
+  ],
+  axios: {
+    baseURL: "http://localhost:3001/"
+  },
+  router: {
+    middleware: ['authenticated']
+  },
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: 'api/customer/login', method: 'post', propertyName: 'access.token'}
+        },
+        // tokenRequired: true,
+        tokenType: 'bearer',
+        autoFetchUser: false
+      }
+    }
+  },
     /*
     ** Build configuration
     */
