@@ -1,62 +1,71 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <div class="columns">
-        <div class="column is-4 is-offset-4">
-          <h2 class="title has-text-centered">Welcome back!</h2>
+  <v-app id="inspire">
+    <v-content>
+      <v-container
+        class="fill-height"
+        fluid
+      >
+        <v-row
+          align="center"
+          justify="center"
+        >
+          <v-col
+            cols="12"
+            sm="8"
+            md="4"
+          >
+            <v-card class="elevation-12">
+              <v-toolbar
+                color="primary"
+                dark
+                flat
+              >
+                <v-toolbar-title>Login form</v-toolbar-title>
+                <v-spacer />
+              </v-toolbar>
+              <v-alert type="error" v-if="error">
+                {{this.error}}
+              </v-alert>
+              <v-card-text>
+                <v-form>
+                  <v-text-field
+                    label="Login"
+                    name="login"
+                    prepend-icon="person"
+                    type="text"
+                    v-model="email"
+                  />
 
-          <Notification :message="error" v-if="error"/>
+                  <v-text-field
+                    id="password"
+                    label="Password"
+                    name="password"
+                    prepend-icon="lock"
+                    type="password"
+                    v-model="password"
+                  />
+                </v-form>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer />
+                <v-btn color="primary" v-on:click="login">Login</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-content>
+  </v-app>
 
-          <form method="post" @submit.prevent="login">
-            <div class="field">
-              <label class="label">Email</label>
-              <div class="control">
-                <input
-                  type="email"
-                  class="input"
-                  name="email"
-                  v-model="email"
-                >
-              </div>
-            </div>
-            <div class="field">
-              <label class="label">Password</label>
-              <div class="control">
-                <input
-                  type="password"
-                  class="input"
-                  name="password"
-                  v-model="password"
-                >
-              </div>
-            </div>
-            <div class="control">
-              <button type="submit" class="button is-dark is-fullwidth">Log In</button>
-            </div>
-          </form>
-          <div class="has-text-centered" style="margin-top: 20px">
-            <p>
-              Don't have an account?
-              <nuxt-link to="/register">Register</nuxt-link>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 </template>
 
 <script>
-  const Cookie = process.client ? require('js-cookie') : undefined
-  import Notification from "~/components/Notification";
-
   export default {
     name: 'index',
-    auth: false,
-    components: {
-      Notification,
+    props: {
+      source: String,
     },
-
+    auth: false,
     data() {
       return {
         email: '',
@@ -73,11 +82,13 @@
               email: this.email,
               password: this.password
             }
-          }).then( res => this.$auth.setUser(res.data.user))
+          }).catch(error => {
+            this.error = error.response.data.msg
+          });
 
           this.$router.push('/admin/dashboard')
         } catch (e) {
-          console.log(e)
+          console.log(e.response)
           // this.error = e
         }
       }
