@@ -5,6 +5,7 @@
 <script>
   export default {
     name: "order_id",
+    middleware: 'authenticated',
     validate({params}) {
       return /^\d+$/.test(params.id)
     },

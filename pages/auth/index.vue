@@ -1,37 +1,96 @@
 <template>
-  <div class="container">
-    <h1>Sign in to access the secret page</h1>
-    <div>
-      <label for="email">
-        <input id="email" type="email" value="test">
-      </label>
-      <label for="password">
-        <input id="password" type="password" value="test">
-      </label>
-      <button @click="postLogin">
-        login
-      </button>
-      <p>The credentials are not verified for the example purpose.</p>
-    </div>
-  </div>
+  <v-app id="inspire">
+    <v-content>
+      <v-container
+        class="fill-height"
+        fluid
+      >
+        <v-row
+          align="center"
+          justify="center"
+        >
+          <v-col
+            cols="12"
+            sm="8"
+            md="4"
+          >
+            <v-card class="elevation-12">
+              <v-toolbar
+                color="primary"
+                dark
+                flat
+              >
+                <v-toolbar-title>Login form</v-toolbar-title>
+                <v-spacer />
+              </v-toolbar>
+              <v-alert type="error" v-if="error">
+                {{this.error}}
+              </v-alert>
+              <v-card-text>
+                <v-form>
+                  <v-text-field
+                    label="Login"
+                    name="login"
+                    prepend-icon="person"
+                    type="text"
+                    v-model="email"
+                  />
+
+                  <v-text-field
+                    id="password"
+                    label="Password"
+                    name="password"
+                    prepend-icon="lock"
+                    type="password"
+                    v-model="password"
+                  />
+                </v-form>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer />
+                <v-btn color="primary" v-on:click="login">Login</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-content>
+  </v-app>
+
 </template>
 
 <script>
-  const Cookie = process.client ? require('js-cookie') : undefined
-
   export default {
-    name:'index',
-    middleware: 'notAuthenticated',
+    name: 'index',
+    props: {
+      source: String,
+    },
+    auth: false,
+    data() {
+      return {
+        email: '',
+        password: '',
+        error: null
+      }
+    },
+    middleware: 'auth',
     methods: {
-      postLogin () {
-        setTimeout(() => { // we simulate the async request with timeout.
-          const auth = {
-            accessToken: 'someStringGotFromApiServiceWithAjax'
-          }
-          this.$store.commit('setAuth', auth) // mutating to store for client rendering
-          Cookie.set('auth', auth) // saving token in cookie for server rendering
+      async login() {
+        try {
+          await this.$auth.loginWith('local', {
+            data: {
+              email: this.email,
+              password: this.password
+            }
+          }).catch(error => {
+            this.error = error.response.data.msg
+          });
+
           this.$router.push('/admin/dashboard')
-        }, 1000)
+        } catch (e) {
+          console.log(e.response)
+          // this.error = e
+        }
       }
     }
   }
