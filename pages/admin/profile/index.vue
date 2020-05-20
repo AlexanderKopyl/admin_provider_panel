@@ -128,7 +128,7 @@
 <script>
   export default {
     name: "profile",
-    middleware: 'authenticated',
+    //middleware: 'authenticated',
     props: {
       source: String,
     },

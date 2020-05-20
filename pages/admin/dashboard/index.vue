@@ -7,7 +7,7 @@
     props: {
       source: String,
     },
-    middleware:'authenticated',
+    //middleware:'authenticated',
     data: () => ({
       drawer: null
     }),

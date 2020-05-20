@@ -16,11 +16,11 @@
           >
             <v-card class="elevation-12">
               <v-toolbar
-                color="primary"
+                color="green"
                 dark
                 flat
               >
-                <v-toolbar-title>Login form</v-toolbar-title>
+                <v-toolbar-title>Авторизация</v-toolbar-title>
                 <v-spacer />
               </v-toolbar>
               <v-alert type="error" v-if="error">
@@ -29,8 +29,8 @@
               <v-card-text>
                 <v-form>
                   <v-text-field
-                    label="Login"
-                    name="login"
+                    label="Логин"
+                    name="Login"
                     prepend-icon="person"
                     type="text"
                     v-model="email"
@@ -38,8 +38,8 @@
 
                   <v-text-field
                     id="password"
-                    label="Password"
-                    name="password"
+                    label="Пароль"
+                    name="Password"
                     prepend-icon="lock"
                     type="password"
                     v-model="password"
@@ -48,7 +48,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer />
-                <v-btn color="primary" v-on:click="login">Login</v-btn>
+                <v-btn color="green" dark size="x-large" v-on:click="login">Войти</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -95,3 +95,8 @@
     }
   }
 </script>
+<style scoped>
+template{
+  background-image: url(~assets/admin_panel_background.png) repeat;
+}
+</style>

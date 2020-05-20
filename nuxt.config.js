@@ -39,9 +39,9 @@ module.exports = {
   axios: {
     baseURL: "http://localhost:3001/"
   },
-  router: {
-    middleware: ['auth']
-  },
+ // router: {
+   // middleware: ['auth']
+  //},
   auth: {
     strategies: {
       local: {
