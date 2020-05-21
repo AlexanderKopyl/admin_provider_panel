@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-content>
+    <v-content class="login__page__back">
       <v-container
         class="fill-height"
         fluid
@@ -56,7 +56,6 @@
       </v-container>
     </v-content>
   </v-app>
-
 </template>
 
 <script>
@@ -96,7 +95,8 @@
   }
 </script>
 <style scoped>
-template{
-  background-image: url(~assets/admin_panel_background.png) repeat;
+.login__page__back{
+  background: #fff url(~assets/admin_panel_background.png) repeat;
+
 }
 </style>
