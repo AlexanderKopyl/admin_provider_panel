@@ -1,25 +1,27 @@
 <template>
   <v-app id="inspire">
     <v-content class="login__page__back">
-      <v-container
+      <v-container 
         class="fill-height"
         fluid
       >
-        <v-row
+      <v-row align="center" justify="center">
+        <v-col cols="12" sm="6" md="6" lg="5" xl="5">
+          <div align="center" justify="center" class="auth__header__logo">
+            <img src="~assets/img/zoocomplex__auth_header.png" alt="">
+          </div>
+        </v-col>
+      </v-row>
+        <v-row 
           align="center"
           justify="center"
         >
           <v-col
             cols="12"
-            sm="8"
-            md="4"
+            sm="6" md="6" lg="5" xl="5"
           >
             <v-card class="elevation-12">
-              <v-toolbar
-                color="green"
-                dark
-                flat
-              >
+              <v-toolbar color="green" dark flat>
                 <v-toolbar-title>Авторизация</v-toolbar-title>
                 <v-spacer />
               </v-toolbar>
@@ -94,9 +96,40 @@
     }
   }
 </script>
-<style scoped>
+<style>
 .login__page__back{
-  background: #fff url(~assets/admin_panel_background.png) repeat;
+    background: #fff url(~assets/img/Paw__bg.jpg) repeat;
+  }
+  .auth__header__logo{
+    max-width:1140px;
+    border-radius: 25px;
+    background-color:#fff;
+    box-shadow: gray 0 3px 10px 3px;
+  }
+  .auth__header__logo{
+  }
+  .auth__header__logo img{
+max-width: 100%;
+padding: 20px;
 
-}
+  }
+  
+  .block__login__panel{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    height: 200px;
+  }
+  .login__panel__information{
+  }
+  .login__panel__auth{
+    max-width: auto;
+      min-width: 350px;
+      width: 100%;
+  }
+  @media screen  and (max-width: 768px;){
+    
+  }
 </style>

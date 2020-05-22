@@ -1,0 +1,11 @@
+.login__page__back{
+    background: #fff url(~assets/img/Paw__bg.jpg) repeat;
+  }
+
+  .auth__header__logo img{
+     width: 100px;
+  }
+  v-row img{
+    width: 100px;
+  }
+  
