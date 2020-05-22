@@ -7,7 +7,7 @@
       color="green"
       dark
     >
-      <v-toolbar-title >Пользователи</v-toolbar-title>
+      <v-toolbar-title >Поставщики</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-app-bar>
 
@@ -22,7 +22,7 @@
           col="12">
           <v-card>
     <v-card-title>
-      Список пользователей
+      Список поставщиков
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -49,7 +49,7 @@
       </template>
       <template v-slot:expanded-item="{ headers, item }">
         <td :colspan="headers.length">
-          <div class="provider__details">Подробная информация о пользователе: {{ item.provider__name }}</div>
+          <div class="provider__details">Подробная информация о поставщике: {{ item.provider__name }}</div>
           <v-row>
            
           </v-row>
@@ -101,7 +101,7 @@ data () {
       ],
       desserts: [
         {
-            provider__name: 'Royal__Canin',
+            provider__name: 'Royal Canin',
             provider__e_mail: "info@royal-canin.com",
             provider__phone_number: '+380632456987',
             provider__prefix: 'rc-',
@@ -154,24 +154,7 @@ data () {
   }
 </script>
 <style scope>
-.order__details{
+.provider__details{
   font-size: 20px;
-}
-.customer__info__col-1{
-  border-style: solid;
-  border-width: 0.2px;
-  padding: 5px;
-  text-align: center;
-}
-.customer__value__col-1{
-  font-weight: 700;
-  border-style: solid;
-  border-width: 0.2px;
-  padding: 5px;
-  text-align: center;
-}
-.customer__info_all{
-  margin-bottom: 5px;
-  border-bottom: dashed thin;
 }
 </style>
