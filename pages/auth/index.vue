@@ -104,7 +104,7 @@
     max-width:1140px;
     border-radius: 25px;
     background-color:#fff;
-    box-shadow: gray 0 3px 10px 3px;
+    box-shadow: #9E9E9E 0 3px 10px 3px;
   }
   .auth__header__logo{
   }
